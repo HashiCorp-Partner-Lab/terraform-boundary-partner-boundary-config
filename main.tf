@@ -57,12 +57,20 @@ resource "boundary_credential_username_password" "example_username_password" {
   username            = "exampleusername"
 }
 
+resource "boundary_credential_ssh_private_key" "static_ssh_key" {
+  name                = "static-ssh-key"
+  description         = "Boundary Static SSH credential Example"
+  credential_store_id = boundary_credential_store_static.static_cred_store.id
+  username            = "ec2-user"
+  private_key         = "exampleprivatekey"
+}
+
+//Variable set and Variables to facilitate the Boundary Self Managed Worker No-Code Module"
 resource "tfe_variable_set" "boundary_worker_vs" {
   name         = "Boundary Self Managed Worker Variable Set"
   description  = "Variables Required for the Self Managed Worker No-Code Module"
   organization = data.tfe_organization.org_name.name
   global       = true
-
 }
 
 resource "tfe_variable" "boundary_org" {
