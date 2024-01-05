@@ -16,11 +16,17 @@ variable "boundary_addr" {
 
 variable "boundary_admin_username" {
   type        = string
-  description = "Boundary Admin UI Login Name - This information is stored within a Variable Set"
+  description = "Boundary Admin UI Login Name"
   default     = "admin"
 }
 
 variable "boundary_admin_password" {
   type        = string
-  description = "Boundary Admin UI Password - This informaton is stored within a Variable Set"
+  description = "Boundary Admin UI Password"
+}
+
+variable "hpl_tfc_organisation_name" {
+  type        = string
+  description = "TFC Org Name"
+  default     = "TFC Org"
 }
