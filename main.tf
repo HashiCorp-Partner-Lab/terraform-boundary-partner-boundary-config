@@ -57,12 +57,18 @@ resource "boundary_credential_username_password" "example_username_password" {
   username            = "exampleusername"
 }
 
-resource "boundary_credential_ssh_private_key" "static_ssh_key" {
-  name                = "static-ssh-key"
-  description         = "Boundary Static SSH credential Example"
-  credential_store_id = boundary_credential_store_static.static_cred_store.id
-  username            = "ec2-user"
-  private_key         = "exampleprivatekey"
+resource "boundary_user" "readonlyuser" {
+    scope_id = boundary_scope.org.id
+    name = "readonly"
+    description = "An Example Read Only User"
+}
+
+resource "boundary_role" "readonlyrole" {
+    scope_id = boundary_scope.org.id
+    name = "readonly"
+    description = "An Example Read Only Role"
+    principal_ids = [boundary_user.readonlyuser.id]
+    grant_strings = [ "id=*;type=*;actions=read" ]
 }
 
 //Variable set and Variables to facilitate the Boundary Self Managed Worker No-Code Module"
