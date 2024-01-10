@@ -95,7 +95,6 @@ resource "tfe_variable" "boundary_org" {
   key             = "ORG_ID"
   value           = data.boundary_scope.org_scope_id.id
   variable_set_id = tfe_variable_set.boundary_worker_vs.id
-  depends_on = [ boundary_scope.org ]
 }
 
 resource "tfe_variable" "boundary_project" {
@@ -104,6 +103,5 @@ resource "tfe_variable" "boundary_project" {
   key             = "PROJECT_ID"
   value           = data.boundary_scope.project_scope_id.id
   variable_set_id = tfe_variable_set.boundary_worker_vs.id
-  depends_on = [ boundary_scope.project ]
 }
 
