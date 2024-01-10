@@ -24,15 +24,15 @@ data "tfe_organization" "org_name" {
   name = var.hpl_tfc_organisation_name
 }
 
-data "boundary_scope" "org_scope_id" {
-  name = "Org_Scope"
-  scope_id = boundary_scope.org.scope_id
-}
+# data "boundary_scope" "org_scope_id" {
+#   name = "Org_Scope"
+#   scope_id = boundary_scope.org.scope_id
+# }
 
-data "boundary_scope" "project_scope_id" {
-  name = "Project_Scope"
-  scope_id = boundary_scope.project.scope_id
-}
+# data "boundary_scope" "project_scope_id" {
+#   name = "Project_Scope"
+#   scope_id = boundary_scope.project.scope_id
+# }
 
 # Create an organisation scope within global.
 # The global scope can contain multiple org scopes
@@ -93,7 +93,7 @@ resource "tfe_variable" "boundary_org" {
   description     = "Boundary Org ID"
   category        = "env"
   key             = "ORG_ID"
-  value           = data.boundary_scope.org_scope_id.id
+  value           = boundary_scope.org.id
   variable_set_id = tfe_variable_set.boundary_worker_vs.id
 }
 
@@ -101,7 +101,7 @@ resource "tfe_variable" "boundary_project" {
   description     = "Boundary Project ID"
   category        = "env"
   key             = "PROJECT_ID"
-  value           = data.boundary_scope.project_scope_id.id
+  value           = boundary_scope.project.id
   variable_set_id = tfe_variable_set.boundary_worker_vs.id
 }
 
