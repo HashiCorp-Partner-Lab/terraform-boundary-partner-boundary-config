@@ -91,7 +91,7 @@ resource "tfe_variable_set" "boundary_worker_vs" {
 
 resource "tfe_variable" "boundary_org" {
   description     = "Boundary Org ID"
-  category        = "env"
+  category        = "terraform"
   key             = "ORG_ID"
   value           = boundary_scope.org.id
   variable_set_id = tfe_variable_set.boundary_worker_vs.id
@@ -99,7 +99,7 @@ resource "tfe_variable" "boundary_org" {
 
 resource "tfe_variable" "boundary_project" {
   description     = "Boundary Project ID"
-  category        = "env"
+  category        = "terraform"
   key             = "PROJECT_ID"
   value           = boundary_scope.project.id
   variable_set_id = tfe_variable_set.boundary_worker_vs.id
