@@ -24,16 +24,6 @@ data "tfe_organization" "org_name" {
   name = var.hpl_tfc_organisation_name
 }
 
-# data "boundary_scope" "org_scope_id" {
-#   name = "Org_Scope"
-#   scope_id = boundary_scope.org.scope_id
-# }
-
-# data "boundary_scope" "project_scope_id" {
-#   name = "Project_Scope"
-#   scope_id = boundary_scope.project.scope_id
-# }
-
 # Create an organisation scope within global.
 # The global scope can contain multiple org scopes
 resource "boundary_scope" "org" {

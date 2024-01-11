@@ -23,6 +23,7 @@ variable "boundary_admin_username" {
 variable "boundary_admin_password" {
   type        = string
   description = "Boundary Admin UI Password"
+  default = ""
 }
 
 variable "hpl_tfc_organisation_name" {
