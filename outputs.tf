@@ -2,7 +2,7 @@ output "boundary_cred_store_username" {
   value = boundary_credential_username_password.example_username_password.username
 }
 
-output "boundary_acred_store_password" {
+output "boundary_cred_store_password" {
   value = boundary_credential_username_password.example_username_password.password
 }
 
