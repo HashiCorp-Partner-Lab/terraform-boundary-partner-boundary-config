@@ -28,7 +28,7 @@ data "tfe_organization" "org_name" {
 # The global scope can contain multiple org scopes
 resource "boundary_scope" "org" {
   scope_id                 = "global"
-  name                     = var.boundary_org_name
+  name                     = var.boundary_org_scope_name
   auto_create_default_role = true
   auto_create_admin_role   = true
 }
@@ -38,7 +38,7 @@ Each org can contain multiple projects and projects are used to hold
 infrastructure-related resources
 */
 resource "boundary_scope" "project" {
-  name                     = var.boundary_project_name
+  name                     = var.boundary_project_scope_name
   scope_id                 = boundary_scope.org.id
   auto_create_admin_role   = true
   auto_create_default_role = true
@@ -72,6 +72,11 @@ resource "boundary_role" "readonlyrole" {
 }
 
 //Variable set and Variables to facilitate the Boundary Self Managed Worker No-Code Module"
+data "tfe_workspace" "boundary_config" {
+  name = var.TFC_WORKSPACE_NAME
+  organization = var.hpl_tfc_organisation_name
+}
+
 resource "tfe_variable_set" "boundary_worker_vs" {
   name         = "Boundary Self Managed Worker Variable Set"
   description  = "Variables Required for the Self Managed Worker No-Code Module"

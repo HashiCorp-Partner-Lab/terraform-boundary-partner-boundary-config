@@ -1,9 +1,9 @@
-variable "boundary_org_name" {
+variable "boundary_org_scope_name" {
   type        = string
   description = "Name of the Org Scope"
 }
 
-variable "boundary_project_name" {
+variable "boundary_project_scope_name" {
   type        = string
   description = "Name of the Project Scope"
 }
@@ -30,4 +30,10 @@ variable "hpl_tfc_organisation_name" {
   type        = string
   description = "TFC Org Name"
   default     = "TFC Org"
+}
+
+variable "TFC_WORKSPACE_NAME" {
+  type = string
+  description = "The name of the workspaces used in this run"
+  default = null
 }
